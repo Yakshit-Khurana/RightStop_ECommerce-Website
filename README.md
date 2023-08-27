@@ -24,13 +24,20 @@ The list of products along with their price. Hovering over the products creates 
 Footer
 ![Screenshot (1043)](https://github.com/Yakshit-Khurana/RightStop_ECommerce-Website/assets/76546067/739ca50e-2ce1-40ac-b4c6-bd8728561f97)
 _____________________________________________
-ABOUT US PAGE
+<h3>ABOUT US PAGE</h3>
 
 ![Screenshot (1044)](https://github.com/Yakshit-Khurana/RightStop_ECommerce-Website/assets/76546067/cd0592fa-c075-49eb-83fe-f9ea43f32acd)
 ![Screenshot (1045)](https://github.com/Yakshit-Khurana/RightStop_ECommerce-Website/assets/76546067/b79250fb-d6de-44e1-ac38-cc3a907f6fe0)
 _____________________________________________
-SIGN UP/ LOGIN PAGE
+<h3>SIGN UP/ LOGIN PAGE</h3>
 
-CLicking on LogIn button toggles the form.
+CLicking on LogIn or SignUp toggles the form.
 ![Screenshot (1046)](https://github.com/Yakshit-Khurana/RightStop_ECommerce-Website/assets/76546067/2a637d3c-7116-4ca6-ba56-6f3173a46608)
 ![Screenshot (1047)](https://github.com/Yakshit-Khurana/RightStop_ECommerce-Website/assets/76546067/b2d9bdeb-4cac-4980-95ab-d152bdf2a08a)
+
+__________________________
+<h2>UPDATE ALERT!!!!</h2>
+
+1) Caps Lock ON/OFF Detection added to the SIgnUp/Login page using JavaScript.
+2) Password and Check Password validation (both should be the same) added in Sign Up form.
+3) View Password toggle available in LogIn Form.
