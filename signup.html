@@ -5,27 +5,175 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up/Login</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/2e9bc437a5.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="main">
         <input type="checkbox" id="chk" aria-hidden="true">
         <div class="signup">
-            <form action="http://localhost:8080">
+            <form onsubmit="return validate()"> <!--onsubmit return validate will check to submit form or not-->
                 <label for="chk" aria-hidden="true">Sign Up</label>
+                <div class="alert"></div>
                 <input type="text" name="txt" placeholder="User Name" required>
                 <input type="email" name="email" placeholder="example@mail.com" required>
-                <input type="password" name="pwd" placeholder="Password" required>
-                <button>Sign-Up</button>
+                <div class="info">
+                <input id="p1" type="password" name="pwd" placeholder="Password" required onkeyup="passCheck(this.value)">
+                <i id="info-ic" class="fa-solid fa-circle-info" onclick="open1()"></i>
+                </div>
+                <input id="p2" type="password" name="pwd" placeholder="Confirm Password" required>
+                <button onclick="passVal()">Sign-Up</button>
             </form>
         </div>
         <div class="login">
-            <form action="http://localhost:8080">
+            <form >
                 <label for="chk" aria-hidden="true">Login</label>
+                <div class="alert"></div>
                 <input type="email" name="email" placeholder="example@mail.com" required>
-                <input type="password" name="pwd" placeholder="Password" required>
+                <div class="see">
+                <input type="password" name="pwd" placeholder="Password" id="pass" required>
+                <i id='eye' class="fa-regular fa-eye"  onmousedown="toggle1()" onmouseup="toggle2()"></i>
+                </div>
                 <button>Login</button>
             </form>
         </div>
     </div>
+    <div id="points">
+        <ul>
+        <li class="pass-chk"> atleast 8 characters</li>
+        <li class="pass-chk"> atleast 1 lowercase character</li>
+        <li class="pass-chk"> atleast 1 uppercase character</li>
+        <li class="pass-chk"> atleast 1 numerical character</li>
+        <li class="pass-chk"> atleast 1 special character</li>
+        </ul>
+    </div>
+
+
+    
+    <script>
+        let password=document.getElementById('pass');
+        let elem=document.getElementById('eye');
+        // function toggle(){
+        //     let type=password.getAttribute('type');
+        //     if(type==='password'){
+        //         password.setAttribute('type','text');
+        //         elem.setAttribute('class','fa-regular fa-eye-slash');
+        //     }
+        //     else if(type==='text'){
+        //         password.setAttribute('type','password');
+        //         elem.setAttribute('class','fa-regular fa-eye');
+        //     }
+        // }
+
+        //              See Password Toggle
+        function toggle1() {
+            password.setAttribute('type','text');
+            elem.setAttribute('class','fa-regular fa-eye-slash');
+        }
+        function toggle2() {
+            password.setAttribute('type','password');
+            elem.setAttribute('class','fa-regular fa-eye');
+        }
+        //          Password and Confirm Password Validation
+        let flag=1; 
+        let p1=document.getElementById('p1');
+        let p2=document.getElementById('p2');
+
+        let pass=document.getElementsByClassName('pass-chk'); //pwd conditions
+        let flag1=1;//pwd conditions flag
+
+        function passVal() {
+            // alert(p1.value);
+            // alert(p2.value);
+            if(p2.value.length>0){
+                if (p1.value!=p2.value){
+                    window.alert("Password and Confirm Password field don't match. Please Check");
+                    p1.value="";
+                    p2.value=""; //even if not done empty the form kis not submitted due to validate function
+                    flag=0;
+                }
+                else{
+                    flag=1;
+                }
+            }
+            else{
+                window.alert("Confirm Password empty")
+                    flag=0;
+            }
+            let j=0;
+            for(j=0;j<5;j++){
+                if (pass[j].style.color==="red"){
+                    flag=0;
+                    alert("Password requirement not met. Click i to know more");
+                    break;
+                }
+            }
+        }
+
+        window.addEventListener('keyup',event=>{
+            let isCaps=event.getModifierState('CapsLock');
+            var i;
+            if(isCaps){
+                for(i=0;i<2;i++){
+                    document.getElementsByClassName('alert')[i].innerHTML="Caps Lock is ON";
+                }
+            }
+            else{
+                for(i=0;i<2;i++){
+                    document.getElementsByClassName('alert')[i].innerHTML="";
+                }
+            }
+        })
+        function passCheck(data){
+            let pass=document.getElementsByClassName('pass-chk');
+            const lowerCase = new RegExp('(?=.*[a-z])');
+            const upperCase = new RegExp('(?=.*[A-Z])');
+            const number = new RegExp('(?=.*[0-9])');
+            const specialChar = new RegExp('(?=.*[!@#\$%\^&\*])');
+            const eightChar = new RegExp('(?=.{8,})');
+            if(eightChar.test(data)) {
+                pass[0].style.color="green";
+            }else{
+                pass[0].style.color = "red";
+            }
+            if(lowerCase.test(data)){
+                pass[1].style.color="green";
+            }else{
+                pass[1].style.color = "red";
+            }
+            if(upperCase.test(data)) {
+                pass[2].style.color= "green";
+            }else{
+                pass[2].style.color = "red";
+            }
+            if(number.test(data)) {
+                pass[3].style.color= "green";
+            }else{
+                pass[3].style.color = "red";
+            }
+            if(specialChar.test(data)) {
+                pass[4].style.color= "green";
+            }else{
+                pass[4].style.color = "red";
+            }
+        }
+        //Toggle info(i) button
+        function open1(){
+            if (document.getElementById("points").style.display==="none"){
+                document.getElementById("points").style.display="block";
+            }
+            else{
+                document.getElementById("points").style.display="none";
+            }
+        }
+
+        function validate() { //To stop the form from submitting
+            if(flag==1 && flag1==1){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+    </script>
 </body>
 </html>
