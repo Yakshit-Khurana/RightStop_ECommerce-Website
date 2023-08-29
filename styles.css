@@ -22,7 +22,16 @@ body{
     position: relative;
     width: 100%;
     height: 100%;
+    /* overflow: visible; */
 }
+.alert{
+    position: absolute;
+    top:15%;
+    left:38%;
+    font-size: 0.7rem;
+    color: ivory;
+}
+.login .alert{color: teal;}
 label{
     display: flex;
     color: white;
@@ -33,16 +42,28 @@ label{
     cursor: pointer;
     transition: 0.5s ease-in-out;
 }
+
 input{
     width: 60%;
     height: 20px;
     justify-content: center;
     display: flex;
-    margin: 20px auto;
+    margin: 10px auto;
     padding: 10px;
     border-radius: 5px;
     border: none;
 }
+.login .see, .signup .info{
+    position:relative;
+}
+
+.login #eye, .signup .info #info-ic{
+    position: absolute;
+    top:30%;
+    left:75%;
+    opacity:0.4;
+}
+
 input:focus{
     background-color: #fdf4f4d7;
 }
@@ -75,12 +96,29 @@ button:hover{
     transform: translateY(-180px);
     transition: 0.8s ease-in-out;
 }
+i:hover{
+    cursor: pointer;
+}
 .login label{
     color:rgb(158, 11, 11);
     transform: scale(0.6);
     padding-top: 10px;
 }
+#points{
+    margin-top: 80px;
+    background-color: rgb(255,255,255,0.7);
+    padding:0px 22px 2px 0px;
+    border-radius: 10px;
+    display:none;
+    position: absolute;
+    z-index:5;
+    right:22%;
+    font-size: 13px;
+}
 
+.pass-chk{
+    color:red;
+}
 #chk:checked ~ .login{
     transform: translateY(-500px);
 }
